@@ -1,0 +1,22 @@
+﻿/****** Object:  Table [dbo].[ALBUM_PHOTO]    Committed by VersionSQL https://www.versionsql.com ******/
+
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+CREATE TABLE [dbo].[ALBUM_PHOTO](
+	[Customer_ID] [int] NOT NULL,
+	[Album_Name] [varchar](20) NOT NULL,
+	[Photo_URL] [varchar](80) NOT NULL,
+ CONSTRAINT [PK_ALBUM_PHOTO] PRIMARY KEY CLUSTERED 
+(
+	[Customer_ID] ASC,
+	[Album_Name] ASC,
+	[Photo_URL] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[ALBUM_PHOTO]  WITH CHECK ADD  CONSTRAINT [FK_AlbumAlbumsPhotos] FOREIGN KEY([Customer_ID], [Album_Name])
+REFERENCES [dbo].[ALBUMS] ([Customer_ID], [Album_Name])
+ALTER TABLE [dbo].[ALBUM_PHOTO] CHECK CONSTRAINT [FK_AlbumAlbumsPhotos]
+ALTER TABLE [dbo].[ALBUM_PHOTO]  WITH CHECK ADD  CONSTRAINT [FK_PhotoAlbumsPhotos] FOREIGN KEY([Photo_URL])
+REFERENCES [dbo].[PHOTOS] ([URL])
+ALTER TABLE [dbo].[ALBUM_PHOTO] CHECK CONSTRAINT [FK_PhotoAlbumsPhotos]
